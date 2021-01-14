@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<map>
+  <room>
+    <name>Entrance</name>
+    <description>The tower looms before you, reaching high into the mist. You've come this far already.</description>
+    <container>box</container>
+
+    <creature>dummy</creature>
+
+    <border>
+      <direction>north</direction>
+      <name>CrystalHall</name>
+    </border>
+
+    <trigger>
+      <type>permanent</type>
+      <block>yes</block>
+      <command>go north</command>
+      <condition>
+        <has>no</has>
+        <object>key</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>Are you sure you're well-equipped to enter the tower? You won't be able to go back.</print>
+    </trigger>
+  </room>
+
+  <room>
+    <name>CrystalHall</name>
+    <description>You stand within a towering hall, its glassy walls patterned with mosaics that shine in every color.</description>
+    <container>chest</container>
+
+    <creature>shade</creature>
+
+    <border>
+      <direction>east</direction>
+      <name>Passageway</name>
+    </border>
+  </room>
+
+  <room>
+    <name>HallofHistories</name>
+    <description>Swaths of mirrors fill the walls, each reflecting images of long ago. A strange being studies the mirrors.</description>
+
+    <creature>spirit</creature>
+
+    <border>
+      <direction>east</direction>
+      <name>FragmentedPassage</name>
+    </border>
+  </room>
+
+  <room>
+    <name>Passageway</name>
+    <description>As you walk through the passageway, you notice a torn page beneath one of the mosaics.</description>
+    <description>As you walk through the passageway, you notice the elaborate mosaics that continue along the walls.</description>
+    <item>page</item>
+
+    <trigger>
+      <condition>
+        <has>no</has>
+        <owner>Passageway</owner>
+        <object>page</object>
+      </condition>
+      <action>redescribe Passageway with 1</action>
+    </trigger>
+
+    <border>
+      <direction>west</direction>
+      <name>CrystalHall</name>
+    </border>
+    <border>
+      <direction>south</direction>
+      <name>DraftyRoom</name>
+    </border>
+  </room>
+
+  <room>
+    <name>FragmentedPassage</name>
+    <description>The passageway winds in loops through the air. It's hard to tell which way is up.</description>
+
+    <border>
+      <direction>west</direction>
+      <name>HallofHistories</name>
+    </border>
+    <border>
+      <direction>north</direction>
+      <name>EmptyRoom</name>
+    </border>
+  </room>
+
+  <room>
+    <name>DraftyRoom</name>
+    <description>The cloudy sky is visible through the room's paneless window, but there is a chill in the air. A figure watches you unblinkingly from the corner.</description>
+    <description>The cloudy sky is visible through the room's paneless window.</description>
+
+    <creature>ghost</creature>
+    <container>pedestal</container>
+    <border>
+      <direction>north</direction>
+      <name>Passageway</name>
+    </border>
+    <border>
+      <direction>west</direction>
+      <name>MirrorRoom</name>
+    </border>
+  </room>
+
+  <room>
+    <name>EmptyRoom</name>
+    <description>Outside the room's window, a starless void fills the horizon. Twin reflections glitter at you from the opposite corner.</description>
+    <description>Outside the room's window, a starless void fills the horizon.</description>
+
+    <trigger>
+      <condition>
+        <owner>EmptyRoom</owner>
+        <has>no</has>
+        <object>wraith</object>
+      </condition>
+      <action>redescribe EmptyRoom with 1</action>
+    </trigger>
+
+    <border>
+      <direction>south</direction>
+      <name>FragmentedPassage</name>
+    </border>
+    <border>
+      <direction>west</direction>
+      <name>MirroredRoom</name>
+    </border>
+
+    <creature>wraith</creature>
+    <item>everglass</item>
+    <item>gold</item>
+
+  </room>
+
+  <room>
+    <name>MirrorRoom</name>
+    <description>A large mirror stretches across the room's south wall, its edges lined with tongues of gold.</description>
+    <status></status>
+
+    <border>
+      <direction>north</direction>
+      <name>Glade</name>
+    </border>
+
+    <border>
+      <direction>east</direction>
+      <name>DraftyRoom</name>
+    </border>
+
+    <border>
+      <direction>through</direction>
+      <name>MirroredRoom</name>
+    </border>
+
+    <trigger>
+      <type>permanent</type>
+      <command>go through</command>
+      <condition>
+        <has>yes</has>
+        <owner>inventory</owner>
+        <object>ghoststone</object>
+      </condition>
+      <action>visual 2</action>
+      <print>You pass through the mirror to the other side, as though it were water.</print>
+    </trigger>
+
+    <trigger>
+      <command>go through</command>
+      <block>yes</block>
+      <type>permanent</type>
+      <condition>
+        <has>no</has>
+        <owner>inventory</owner>
+        <object>ghoststone</object>
+      </condition>
+      <print>The mirror is solid and impassible.</print>
+    </trigger>
+  </room>
+
+  <room>
+    <name>MirroredRoom</name>
+    <description>Everything seems hazy here. A large mirror stretches across the room's north wall, but you can't see yourself reflected in it.</description>
+    <status></status>
+
+    <container>stonechest</container>
+
+    <border>
+      <direction>south</direction>
+      <name>TwistedGlade</name>
+    </border>
+
+    <border>
+      <direction>east</direction>
+      <name>EmptyRoom</name>
+    </border>
+
+    <border>
+      <direction>through</direction>
+      <name>MirrorRoom</name>
+    </border>
+
+    <trigger>
+      <type>permanent</type>
+      <command>go through</command>
+      <condition></condition>
+      <action>visual 1</action>
+      <print>You pass through the mirror to the other side, as though it were water.</print>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <block>yes</block>
+      <command>go through</command>
+      <condition>
+        <has>no</has>
+        <object>ghoststone</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>The mirror is solid and impassible.</print>
+    </trigger>
+  </room>
+
+  <room>
+    <name>Glade</name>
+    <description>Everything is still, even the waterfall that curves down through the ferns. You can see motes of dust suspended in the air, motionless.</description>
+    <description>You can hear the calm rushing of the waterfall throughout the glade.</description>
+
+    <status>stasis</status>
+
+    <border>
+      <direction>south</direction>
+      <name>MirrorRoom</name>
+    </border>
+
+    <border>
+      <direction>east</direction>
+      <name>Balcony</name>
+    </border>
+
+    <trigger>
+      <condition>
+        <has>yes</has>
+        <object>everglass</object>
+        <owner>Glade</owner>
+      </condition>
+      <print>In the presence of the everglass, the room seems to breathe again.</print>
+      <action>update Glade to restored</action>
+      <action>points +10</action>
+      <action>redescribe Glade with 1</action>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <command>go east</command>
+      <block>yes</block>
+      <condition>
+        <has>no</has>
+        <object>everglass</object>
+        <owner>Glade</owner>
+      </condition>
+      <print>You try to move forward, but find some invisible force in the way. It's as though even the air is locked in place.</print>
+    </trigger>
+  </room>
+
+  <room>
+    <name>TwistedGlade</name>
+    <description>Grey and red flowers of impossible size line the walls, with one particularly prominent one reaching the height of your shoulders. The small waterfall in the corner flows calmly upward.</description>
+    <description>Grey and red flowers of impossible size line the walls, and sap stains the glade like blood. The small waterfall in the corner flows calmly upward.</description>
+
+    <container>flower</container>
+
+    <border>
+      <direction>north</direction>
+      <name>MirroredRoom</name>
+    </border>
+
+    <border>
+      <direction>east</direction>
+      <name>Throne</name>
+    </border>
+
+  </room>
+
+  <room>
+    <name>Balcony</name>
+    <description>You enter the balcony. From here, you look out over a righted world. ("exit" to conclude the game.)</description>
+    <border>
+      <direction>west</direction>
+      <name>Glade</name>
+    </border>
+
+    <trigger>
+      <command>exit</command>
+      <condition></condition>
+      <action>points +100</action>
+      <action>exit</action>
+    </trigger>
+  </room>
+
+  <room>
+    <name>Throne</name>
+    <description>You look out into an abyss clouded with fog. A serpentine dragon soars up to meet you: It is Jirat, the god of death.</description>
+    <border>
+      <direction>west</direction>
+      <name>TwistedGlade</name>
+    </border>
+
+    <creature>Jirat</creature>
+  </room>
+
+  <creature>
+    <name>ghost</name>
+    <trigger>
+      <command>attack ghost with gem</command>
+      <block>yes</block>
+      <condition>
+        <has>yes</has>
+        <object>gem</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>In a burst of light, the ghost and gem dissipate. You notice a small, pale stone where the ghost had been.</print>
+      <action>add ghoststone to DraftyRoom</action>
+      <action>delete ghost</action>
+      <action>delete gem</action>
+      <action>redescribe DraftyRoom with 1</action>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <command>attack ghost</command>
+      <print>You swing with all your might, but your strike just passes through.</print>
+    </trigger>
+
+  </creature>
+
+  <creature>
+    <name>shade</name>
+
+    <hp>2</hp>
+    <vulnerability>dagger</vulnerability>
+    <vulnerability>quarterstaff</vulnerability>
+
+    <points>+5</points>
+  </creature>
+
+  <creature>
+    <name>wraith</name>
+    <description>It bares a set of sharp teeth, huddled possessively over a gleaming hoard. Crimson gems glint from its eye sockets.</description>
+    <hp>3</hp>
+    <vulnerability>dagger</vulnerability>
+    <vulnerability>quarterstaff</vulnerability>
+    <vulnerability>halberd</vulnerability>
+
+    <trigger>
+      <type>permanent</type>
+      <command>take everglass</command>
+      <block>yes</block>
+      <condition>
+        <owner>EmptyRoom</owner>
+        <has>yes</has>
+        <object>wraith</object>
+      </condition>
+      <print>The wraith hisses angrily, and you back away.</print>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <block>yes</block>
+      <command>take gold</command>
+      <condition>
+        <owner>EmptyRoom</owner>
+        <has>yes</has>
+        <object>wraith</object>
+      </condition>
+      <print>The wraith hisses angrily, and you back away.</print>
+    </trigger>
+  </creature>
+
+  <creature>
+    <name>dummy</name>
+    <description>It's a training dummy you've set up.</description>
+    <hp>20</hp>
+
+    <vulnerability>quarterstaff</vulnerability>
+    <vulnerability>dagger</vulnerability>
+
+    <trigger>
+      <type>permanent</type>
+      <command>attack dummy</command>
+      <print>The dummy bounces about happily.</print>
+    </trigger>
+  </creature>
+
+  <container>
+    <name>box</name>
+    <item>quarterstaff</item>
+    <item>dagger</item>
+    <item>key</item>
+  </container>
+  <item>
+    <name>quarterstaff</name>
+  </item>
+  <item>
+    <name>dagger</name>
+  </item>
+  <item>
+    <name>key</name>
+  </item>
+
+  <container>
+    <name>chest</name>
+    <item>gem</item>
+    <status>locked</status>
+
+    <accept>key</accept>
+    <trigger>
+      <command>open chest</command>
+      <condition>
+        <has>yes</has>
+        <object>key</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>You unlock the chest.</print>
+      <action>update chest to unlocked</action>
+    </trigger>
+  </container>
+
+  <container>
+    <name>pedestal</name>
+    <description>There's an uneven hollow in the top, like something is missing.</description>
+    <description>The pedestal is aglow with veins of color, refracting the light.</description>
+    <status>locked</status>
+
+    <trigger>
+      <command>put lens in pedestal</command>
+      <block>yes</block>
+      <condition>
+        <has>yes</has>
+        <owner>inventory</owner>
+        <object>lens</object>
+      </condition>
+      <print>With a click, the pedestal now catches the rays of sunlight filtering through the window, glimmering in untold shades.</print>
+      <action>points +10</action>
+      <action>delete lens</action>
+      <action>redescribe pedestal with 1</action>
+    </trigger>
+  </container>
+
+  <container>
+    <name>stonechest</name>
+
+    <item>halberd</item>
+    <item>talisman</item>
+    <item>tile</item>
+  </container>
+
+
+  <container>
+    <name>flower</name>
+    <description>It seems like you can see something between its huge petals.</description>
+    <description>It's a bloom of unusual size and color.</description>
+
+    <item>lens</item>
+
+    <trigger>
+      <command>attack flower with dagger</command>
+      <block>yes</block>
+      <condition>
+        <has>yes</has>
+        <owner>inventory</owner>
+        <object>dagger</object>
+      </condition>
+      <print>You slice through the plant. With a scream, it falls away, revealing a small item.</print>
+      <action>points -5</action>
+      <action>delete flower</action>
+      <action>add lens to TwistedGlade</action>
+      <action>redescribe TwistedGlade with 1</action>
+    </trigger>
+
+    <trigger>
+      <condition>
+        <has>no</has>
+        <owner>flower</owner>
+        <object>lens</object>
+      </condition>
+    <action>redescribe flower with 1</action>
+    </trigger>
+
+  </container>
+
+  <item>
+    <name>gem</name>
+    <writing>It seems to glow with some inner light.</writing>
+    <status>dormant</status>
+    <turnon>
+      <print>You clench the gem in your hand, and it begins to glow fiercely.</print>
+      <status>glowing</status>
+    </turnon>
+  </item>
+
+  <item>
+    <name>page</name>
+    <description>It's a page, perhaps from a book of legends, with some writing you cannot read at this distance.</description>
+    <writing>"Linger not by your reflection, the legend says, for such surfaces are gateways to the realm of ghosts."</writing>
+  </item>
+
+  <item>
+    <name>lens</name>
+    <writing>It seems precisely and purposefully shaped.</writing>
+    <description>The lump of glassy crystal seems to have a familiar shape...</description>
+  </item>
+
+  <item>
+    <name>halberd</name>
+  </item>
+
+  <item>
+    <name>talisman</name>
+    <writing>The talisman is etched with an archaic, unreadable script.</writing>
+    <description>The curved bone charm almost resembles some sort of creature.</description>
+  </item>
+
+  <item>
+    <name>tile</name>
+    <description>The chunk of glass looks as though it were chipped off of a larger mosaic.</description>
+    <writing>The picture seems to depict a carefree child flying over a lake.</writing>
+  </item>
+
+  <item>
+    <name>ghoststone</name>
+    <writing>On the flat stone is etched a simple triangle that you recognize as the emblem of the god of death.</writing>
+  </item>
+
+  <item>
+    <name>everglass</name>
+    <description>The crystal seems to flow like liquid, and yet at the same time it is still.</description>
+  </item>
+
+  <item>
+    <name>gold</name>
+    <description>It shines as though recently polished, but is torn into jagged chunks.</description>
+  </item>
+
+  <creature>
+    <name>spirit</name>
+    <description>Though the spirit's eyes are closed, they regard you with an eerie intensity.</description>
+    <status>unperturbed</status>
+
+    <trigger>
+      <command>attack spirit</command>
+      <block>yes</block>
+      <print>"Mortal, you do not wish to do that. You should leave this place while you still have your life."</print>
+      <action>update spirit to disturbed</action>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <condition>
+        <has>no</has>
+        <object>ghoststone</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>"You seem to have lost your way," the being in the room says. "Perhaps I can help you..."</print>
+    </trigger>
+
+    <trigger>
+      <type>permanent</type>
+      <block>yes</block>
+      <command>attack spirit</command>
+      <condition>
+        <object>spirit</object>
+        <status>disturbed</status>
+      </condition>
+      <print>You find yourself staring into the spirit's eyes, and all memory of who you are or how you came to be here suddenly vanishes.</print>
+      <action>exit</action>
+    </trigger>
+  </creature>
+
+  <creature>
+    <name>Jirat</name>
+    <description>The dragon's serpentine body seems to fill the room.</description>
+
+    <trigger>
+      <condition>
+        <has>yes</has>
+        <object>gold</object>
+        <owner>inventory</owner>
+      </condition>
+      <condition>
+        <has>yes</has>
+        <object>talisman</object>
+        <owner>inventory</owner>
+      </condition>
+      <condition>
+        <has>yes</has>
+        <object>ghoststone</object>
+        <owner>inventory</owner>
+      </condition>
+      <print>"I see you have brought me offerings. Do you wish to join my kingdom?"</print>
+      <print>("exit" to accept the dragon's offer)</print>
+    </trigger>
+
+    <trigger>
+      <command>exit</command>
+    <condition>
+      <has>yes</has>
+      <object>gold</object>
+      <owner>inventory</owner>
+    </condition>
+    <condition>
+      <has>yes</has>
+      <object>talisman</object>
+      <owner>inventory</owner>
+    </condition>
+    <condition>
+      <has>yes</has>
+      <object>ghoststone</object>
+      <owner>inventory</owner>
+    </condition>
+    <print>You make a pact with Jirat, forsaking the land of the living.</print>
+    <action>exit</action>
+  </trigger>
+
+  </creature>
+
+  <container>
+    <name>inventory</name>
+    <description>Your items are held in an adventuring pack.</description>
+  </container>
+
+</map>
